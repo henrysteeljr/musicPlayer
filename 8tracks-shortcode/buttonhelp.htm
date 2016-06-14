@@ -1,0 +1,129 @@
+<html>
+
+<head>
+	<title>8tracks Visual Editor Help</title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+	<style>
+		body {
+			padding-top: 10px;
+			font-family: Arial, Helvetica, "sans-serif";
+			font-size: 13px;
+			line-height: 15px;
+			color: #000;
+		}
+
+		a:link {
+			color: #0099CC;
+		}
+
+		a:visited {
+			color: #9999CC;
+		}
+	</style>
+	<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$("#tabs").tabs();
+		});
+	</script>
+	<script>
+		$(function() {
+			$("#opts").tabs();
+		});
+	</script>
+</head>
+
+<body>
+	<h2>Where to start?</h2>
+	<p>The Visual Editor sure has a lot of options, right? Don't worry. I'll help you with the basics. Just remember the essentials:
+		<ul>
+			<li>1. Choose an embed type</li>
+			<li>2. Provide relevant information.</li>
+			<li>3. Set options as desired.</li>
+			<li>4. Choose insert shortcode.</li>
+		</ul>
+		<p>First, I'll explain the embed types, and then I'll discuss the global options.</p>
+		<div id="tabs">
+			<ul>
+				<h4>Embed Types:</h4>
+				<li><a href="#tabs-1">Mix</a></li>
+				<li><a href="#tabs-2">Collection</a></li>
+				<li><a href="#tabs-3">DJ</a></li>
+				<li><a href="#tabs-4">Artist</a></li>
+				<li><a href="#tabs-5">Tags</a></li>
+				<li><a href="#tabs-6">Similar</a></li>
+				<li><a href="#tabs-7">WP Meta</a></li>
+			</ul>
+			<div id="tabs-1">
+				<p>This option is for embedding single mixes from 8tracks.com (<a href="http://8tracks.com/tiagonoronha/rainy-days" target="_blank">Example</a>). You simply find a mix you like, and then drop into the box labeled "Mix URL."</p>
+			</div>
+			<div id="tabs-2">
+				<p>This option is very similar to the single mix option, except for the fact that it returns a collection of mixes (<a href="http://8tracks.com/datadebt/collections/favorite-artwork" target="_blank">Example</a>). This collection is larger and holds multiple
+					mixes in one embed. It's great for curating sets!</p>
+			</div>
+			<div id="tabs-3">
+				<p>In general terms, DJs are users on 8tracks.com (<a href="http://8tracks.com/songsthatsaved" target="_blank">It's me!</a>).</p>
+				<p>Using this option will create a collection of mixes by a given user. The "show:" dropdown allows you to specify that you'd like to see a collection of that user's latest mixes, or what s/he has liked, marked to listen to later, already listened to,
+					or finally those mixes that are recommended to him/her.</p>
+				<p>As you might guess, this can be useful when you put your own username in there!</p>
+				<p>
+					<h5>Note: You can put DJs either like this: http://8tracks.com/songsthatsaved (useful for names with unusual characters) or like this: songsthatsaved.  The box accepts either format!</h5></p>
+			</div>
+			<div id="tabs-4">
+				<p>The artist option lets you specify a musician you like, and get back a collection of mixes containing that artist (<a href="http://8tracks.com/explore/songs/bon_iver" target="_blank">Example</a>).</p>
+				<p>The "sort by" dropdown lets you choose three types of collections: Trending (mixes popular right now), New (mixes that are recently made), and Popular (mixes that have been liked by many users over time.</p>
+				<p>
+					<h5>Note: You can only choose one artist.</h5></p>
+			</div>
+			<div id="tabs-5">
+				<p>The tags option lets you search 8tracks by genre, mood, or whatever other meta category through the use of tags or keywords. Simply enter a comma-separated list of things you'd like to find. This search returns a collection of mixes marked with those
+					tags (<a href="http://8tracks.com/explore/hip_hop" target="_blank">Example</a>).</p>
+				<p>Finally, the "sort by" dropdown lets you choose three types of collections: Trending (mixes popular right now), New (mixes that are recently made), and Popular (mixes that have been liked by many users over time.</p>
+			</div>
+			<div id="tabs-6">
+				<p>The similar mixes option lets you take the URL of a mix you like (<a href="http://8tracks.com/songsthatsaved/looting-dad-s-lps" target="_blank">Example</a>), and get back a collection of mixes that have been judged to be similar by data from <a href="http://the.echonest.com/"
+							target="_blank">Echo Nest</a> and <a href="http://last.fm" target="_blank">Last.fm</a> (<a href="http://8tracks.com/mix_sets/similar:371039/player" target="_blank">Example Output</a>).</p>
+			</div>
+			<div id="tabs-7">
+				<p>This option lets you conduct tag searches using the categories or tags (or both!) from one of your WordPress posts. You can specify a post by inserting its URL, or you can allow the plugin to use the most recent post. (Note: This will only work for
+					posts on your blog. Other sites' posts won't work.)</p>
+				<p>If one of your categories or tags returns zero results, it is omitted from the search and the rest are used (you'll see a comment in your html source about this when it happens).</p>
+			</div>
+			<div id="opts">
+				<ul>
+					<h4>Global Options</h4>
+					<li><a href="#opts-1">Width</a></li>
+					<li><a href="#opts-2">Height</a></li>
+					<li><a href="#opts-3">Player Options</a></li>
+				</ul>
+				<div id="opts-1">
+					<p>Here is where you set the width of your single mixes or collections. As a reference, these default to:</p>
+					<ul>
+						<li>Single mixes: 300px</li>
+						<li>Collections: 500px</li>
+					</ul>
+					<p>
+						<h5>Width can be entered in either pixels or percent.</h5></p>
+				</div>
+				<div id="opts-2">
+					<p>Here is where you set the height of your single mixes or collections. As a reference, these default to:</p>
+					<ul>
+						<li>Single mixes: 250px</li>
+						<li>Collections: 500px</li>
+					</ul>
+					<p>
+						<h5>Height can be entered in either pixels or percent.</h5></p>
+				</div>
+				<div id="opts-3">
+					<p>This dropdown has three options that affect the way your mix or collection behaves:
+						<ul>
+							<li>1. Shuffle: This randomizes the track order within a mix.</li>
+							<li>2. Autoplay: This makes the mix or collection start playing as soon as it is loaded.</li>
+							<li>3. Shuffle+Autoplay: This does both 1 and 2.</li>
+						</ul>
+				</div>
+			</div>
+</body>
+
+</html>

@@ -1,0 +1,337 @@
+<head>
+	<title>Create 8tracks Shortcode</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var wp_path = '/';
+		try {
+			wp_path = window.top.location.pathname.split(/wp-admin/)[0];
+		} catch (e) {}
+		document.write('<scr' + 'ipt src="' + wp_path + 'wp-includes/js/tinymce/tiny_mce_popup.js"></scr' + 'ipt>');
+	</script>
+	<script type="text/javascript">
+		var eighttracks = {
+			e: '',
+			init: function(e) {
+				eighttracks.e = e;
+				tinyMCEPopup.resizeToInnerSize();
+			},
+			insert: function createeighttracksShortcode(e) {
+				//Create eighttracks Shortcode
+				var url = $('#eighttracksURL').val();
+				var width = $('#eighttracksWidth').val();
+				var height = $('#eighttracksHeight').val();
+				var playops = $('#eighttracksPlayops').val();
+				var tags = $('#eighttracksTags').val();
+				var artist = $('#eighttracksArtist').val();
+				var dj = $('#eighttracksDJ').val();
+				var mixset = $('#eighttracksMixset').val();
+				var sort = $('#eighttracksSort').val();
+				var lists = $('#eighttracksList').val();
+				var usecat = $('#eighttracksUsecat').val();
+				var usetags = $('#eighttracksUsetags').val();
+				var similar = $('#eighttracksSimilar').val();
+				var metaurl = $('#eighttracksSpecificMeta').val();
+				var output = '[8tracks ';
+
+				if (url) output += 'url="' + url + '" ';
+				if (width) output += 'width="' + width + '" ';
+				if (height) output += 'height="' + height + '" ';
+				if (tags) output += 'tags="' + tags + '" ';
+				if (artist) output += 'artist="' + artist + '" ';
+				if (dj) output += 'dj="' + dj + '" ';
+				if (playops) output += 'playops="' + playops + '" ';
+				if (mixset) output += 'smart_id="' + mixset + '" ';
+				if (sort) output += 'sort="' + sort + '" ';
+				if (lists) output += 'lists="' + lists + '" ';
+				if (usecat) output += 'usecat="' + usecat + '" ';
+				if (usetags) output += 'usetags="' + usetags + '" ';
+				if (similar) output += 'similar="' + similar + '" ';
+				if (metaurl) output += 'meta_url="' + metaurl + '" ';
+
+				output += ']';
+
+				tinyMCEPopup.execCommand('mceReplaceContent', false, output);
+
+				tinyMCEPopup.close();
+
+			}
+
+		}
+
+		tinyMCEPopup.onInit.add(eighttracks.init, eighttracks);
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//bind to radio button change event
+			$('input[name="embed_type"]').change(function() {
+				var embed_type = $(this).val(); //get div name from radio button value
+
+				$('#embed_options>div').hide(); // hide irrelevant options
+
+				$('#' + embed_type + '_options').show(); //show relevant options
+
+				if (embed_type == 'artist' || embed_type == 'tags') { //show shared options if applicable
+					$('#sort_options').show();
+				}
+
+				var defaultWidth, defaultHeight;
+				if (embed_type == 'mix') { //update default height/width appropriately
+					defaultWidth = 300;
+					defaultHeight = 250;
+				} else {
+					defaultWidth = 500;
+					defaultHeight = 500;
+				}
+				$('#eighttracksWidth').attr('placeholder', defaultWidth);
+				$('#eighttracksHeight').attr('placeholder', defaultHeight);
+			})
+		});
+	</script>
+
+	<script language="javascript" type="text/javascript">
+		<!--
+		function popitup(url) {
+			newwindow = window.open(url, 'name', 'width=600,scrollbars=yes,resizable=yes');
+			if (window.focus) {
+				newwindow.focus()
+			}
+			return false;
+		}
+		// -->
+	</script>
+
+	<style>
+		body {
+			padding-top: 10px;
+			font-family: Arial, Helvetica, "sans-serif";
+			font-size: 13px;
+			line-height: 15px;
+			color: #000;
+		}
+
+		label {
+			color: #333;
+			line-height: 23px;
+		}
+
+		hr {
+			border: 0px none;
+			border-top: 1px solid #ccc;
+			height: 0;
+		}
+
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+			padding-bottom: 5px;
+		}
+
+		table {
+			line-height: 90%;
+		}
+
+		input[type="text"],
+		input[type="number"] {
+			background: #fff;
+			padding: 5px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+		}
+
+		input[type="text"] {
+			width: 250px;
+		}
+
+		input[type="radio"] {
+			margin: 1px 6px 2px 0;
+		}
+
+		select {
+			width: 140px;
+		}
+
+		p {
+			line-height: 90%;
+		}
+        a:link {
+            color: #FF2D5E;
+        }
+        a:visited {
+            color: #FF2D5E;
+        }
+		#insert_shortcode {
+			background: #FF2D5E;
+			color: #fff;
+			text-align: center;
+            font-size: 14px;
+			padding: 20px;
+			border-radius: 20px;
+            margin-left: 50px;
+			text-decoration: none;
+			float: left;
+		}
+
+		#insert_shortcode:hover {
+			background: #8acb1a;
+		}
+	</style>
+</head>
+
+<body>
+	<form id="eighttracksShortcode">
+
+		<a href="buttonhelp.htm" style="float: right;" onclick="return popitup('buttonhelp.htm')">(help)</a>
+
+		<p><strong>Embed Type</strong></p>
+
+		<table width="100%" cellspacing="0">
+			<tr>
+				<td width="40%">
+					<label>
+						<input type="radio" checked="checked" name="embed_type" value="mix" />Mix</label>
+					<br />
+					<label>
+						<input type="radio" name="embed_type" value="collection" />Collection</label>
+					<br />
+					<label>
+						<input type="radio" name="embed_type" value="dj" />DJ</label>
+					<br />
+					<label>
+						<input type="radio" name="embed_type" value="artist" />Artist search</label>
+					<br />
+					<label>
+						<input type="radio" name="embed_type" value="tags" />Tag Search</label>
+					<br />
+					<label>
+						<input type="radio" name="embed_type" value="similar" />Similar Mixes</label>
+					<br />
+					<label>
+						<input type="radio" name="embed_type" value="meta" />WP Meta</label>
+					<br />
+				</td>
+				<td width="60%" id="embed_options" valign="top">
+					<div id="mix_options">
+						<label for="eighttracksURL">Mix URL</label>
+						<br />
+						<input id="eighttracksURL" type="text" value="" placeholder="Copy &amp; paste a mix URL from 8tracks.com" />
+					</div>
+
+					<div id="collection_options" style="display: none;">
+						<label for="eighttracksMixset">Collection URL:</label>
+						<br />
+						<input id="eighttracksMixset" type="text" value="" placeholder="Copy &amp; paste a collection from 8tracks.com" />
+						<br />
+						<br />
+					</div>
+
+					<div id="dj_options" style="display: none;">
+						<label for="eighttracksDJ">DJ username:</label>
+						<br />
+						<input id="eighttracksDJ" type="text" value="" placeholder="Copy &amp; paste the the user's url or username" />
+						<br />
+						<br />
+						<label for="eighttracksList">Show:</label>
+						<select name="eighttracksList" id="eighttracksList" style="width: 50%;">
+							<option value="">DJ's latest mixes</option>
+							<option value="liked">Liked</option>
+							<option value="listen_later">Listen Later</option>
+							<option value="listened">History</option>
+							<option value="recommended">Recommended</option>
+						</select>
+					</div>
+
+					<div id="tags_options" style="display: none;">
+						<label for="eighttracksTags">Tags:</label>
+						<br />
+						<input id="eighttracksTags" type="text" value="" placeholder="hip hop, rock" />
+					</div>
+
+					<div id="meta_options" style="display: none;">
+						<label for="eighttracksSpecificMeta">Use one of your posts by putting its URL here. (Default: current first post)</label>
+						<input id="eighttracksSpecificMeta" type="text" value="" placeholder="Copy &amp; paste a URL from this blog." />
+						<ul>
+							<li>
+								<label for="eighttracksUsetags">Select metadata:</label>
+								<select name="eighttrracksUsetags" id="eighttracksUsetags" style="width: 80%;">
+									<option value="">Use my post's tags? (No is default)</option>
+									<option value="yes">Yes</option>
+								</select>
+							</li>
+							<li>
+								<select name="eighttracksUsecat" id="eighttracksUsecat" style="width: 80%;">
+									<option value="">Use my post's categories? (No is default)</option>
+									<option value="yes">Yes</option>
+								</select>
+							</li>
+						</ul>
+					</div>
+
+					<div id="artist_options" style="display: none;">
+						<label for="eighttracksArtist">Artist:</label>
+						<br />
+						<input id="eighttracksArtist" type="text" value="" placeholder="Enter an artist name to search" />
+					</div>
+
+					<div id="similar_options" style="display: none;">
+						<label for="eighttracksSimilar">Create a collection of related mixes:</label>
+						<br />
+						<input id="eighttracksSimilar" type="text" value="" placeholder="Use the URL of a single mix." />
+						<br />
+						<br /> Powered by <a href="http://the.echonest.com/" target="_new">Echo Nest</a>.
+					</div>
+
+					<div id="sort_options" style="display: none;">
+						<label for="eighttracksSort">Sort by:</label>
+						<select name="eighttracksSort" id="eighttracksSort">
+							<option value="" />
+							<option value="hot">Trending</option>
+							<option value="recent">New</option>
+							<option value="popular">Popular</option>
+						</select>
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<br/><p><strong>Options</strong></p><br/>
+
+		<table width="100%" cellspacing="0">
+			<tr>
+				<td width="40%">
+					<label for="eighttracksWidth">Width</label>
+				</td>
+				<td width="60%">
+					<input id="eighttracksWidth" type="number" value="" placeholder="300" /> pixels</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="eighttracksHeight">Height</label>
+				</td>
+				<td>
+					<input id="eighttracksHeight" type="number" value="" placeholder="250" /> pixels</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label for="eighttracksPlayops">Player Options</label>
+				</td>
+				<td>
+					<select name="eighttracksPlayops" id="eighttracksPlayops">
+						<option value="">None</option>
+						<option value="shuffle">Shuffle</option>
+						<option value="autoplay">Autoplay</option>
+						<option value="shuffle+autoplay">Shuffle and Autoplay</option>
+					</select>
+				</td>
+			</tr>
+
+		</table>
+
+		<p><br/><a href="javascript:eighttracks.insert(eighttracks.e)" id="insert_shortcode" style="width: 50%; padding-left: 30px; padding-right: 30px; text-align: center;">Insert Shortcode</a></p>
+
+	</form>
+</body>
+
+</html>
